@@ -49,3 +49,27 @@ Quantity addQuantity(Quantity a, Quantity b) {
 	tmp.dimension.N=a.dimension.N:
 	tmp.dimension.J=a.dimension.J;
 }
+Quantity subQuantity(Quantity a, Quantity b) {
+	Quantity tmp;
+	if(equalDimension(a, b)!=0) {
+		printf("Не возможно вычитать величины разных размерностей");
+		tmp.value=0;
+		tmp.koef=0;
+		tmp.dimension.L=0;
+		tmp.dimension.M=0;
+		tmp.dimendion.T=0;
+		tmp.dimension.I=0;
+		tmp.dimension.K=0;
+		tmp.dimension.N=0;
+		tmp.dimension.J=0;
+		return tmp;
+	}
+	tmp.value=a.value*a.koef-b.value*b.koef;
+	tmp.dimension.L=a.dimension.L;
+	tmp.dimension.M=a.dimension.M;
+	tmp.dimension.T=a.dimension.T;
+	tmp.dimension.I=a.dimension.I;
+	tmp.dimension.K=a.dimension.K;
+	tmp.dimension.N=a.dimension.N:
+	tmp.dimension.J=a.dimension.J;
+}
