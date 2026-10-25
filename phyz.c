@@ -1,5 +1,6 @@
-#include "phyz.c"
+#include "phyz.h"
 #include <math.h>
+#include <stdio.h>
 
 int equalDimension(Quantity a, Quantity b) {
 	if(a.dimension.L!=b.dimension.L) {
@@ -48,7 +49,7 @@ Quantity addQuantity(Quantity a, Quantity b) {
 		tmp.koef=0;
 		tmp.dimension.L=0;
 		tmp.dimension.M=0;
-		tmp.dimendion.T=0;
+		tmp.dimension.T=0;
 		tmp.dimension.I=0;
 		tmp.dimension.K=0;
 		tmp.dimension.N=0;
@@ -61,8 +62,9 @@ Quantity addQuantity(Quantity a, Quantity b) {
 	tmp.dimension.T=a.dimension.T;
 	tmp.dimension.I=a.dimension.I;
 	tmp.dimension.K=a.dimension.K;
-	tmp.dimension.N=a.dimension.N:
+	tmp.dimension.N=a.dimension.N;
 	tmp.dimension.J=a.dimension.J;
+	return tmp;
 }
 Quantity subQuantity(Quantity a, Quantity b) {
 	Quantity tmp;
@@ -72,7 +74,7 @@ Quantity subQuantity(Quantity a, Quantity b) {
 		tmp.koef=0;
 		tmp.dimension.L=0;
 		tmp.dimension.M=0;
-		tmp.dimendion.T=0;
+		tmp.dimension.T=0;
 		tmp.dimension.I=0;
 		tmp.dimension.K=0;
 		tmp.dimension.N=0;
@@ -85,11 +87,12 @@ Quantity subQuantity(Quantity a, Quantity b) {
 	tmp.dimension.T=a.dimension.T;
 	tmp.dimension.I=a.dimension.I;
 	tmp.dimension.K=a.dimension.K;
-	tmp.dimension.N=a.dimension.N:
+	tmp.dimension.N=a.dimension.N;
 	tmp.dimension.J=a.dimension.J;
+	return tmp;
 }
 Quantity mulQuantity(Quantity a, Quantity b) {
-	Quantity tmp:
+	Quantity tmp;
 	tmp.value=a.value*a.koef*b.value*b.koef;
 	tmp.dimension.L=a.dimension.L+b.dimension.L;
 	tmp.dimension.M=a.dimension.M+b.dimension.M;
@@ -98,9 +101,10 @@ Quantity mulQuantity(Quantity a, Quantity b) {
 	tmp.dimension.K=a.dimension.K+b.dimension.K;
 	tmp.dimension.N=a.dimension.N+b.dimension.N;
 	tmp.dimension.J=a.dimension.J+b.dimension.J;
+	return tmp;
 }
-Quantity mulQuantity(Quantity a, Quantity b) {
-	Quantity tmp:
+Quantity delQuantity(Quantity a, Quantity b) {
+	Quantity tmp;
 	tmp.value=a.value*a.koef/b.value*b.koef;
 	tmp.dimension.L=a.dimension.L-b.dimension.L;
 	tmp.dimension.M=a.dimension.M-b.dimension.M;
@@ -109,6 +113,7 @@ Quantity mulQuantity(Quantity a, Quantity b) {
 	tmp.dimension.K=a.dimension.K-b.dimension.K;
 	tmp.dimension.N=a.dimension.N-b.dimension.N;
 	tmp.dimension.J=a.dimension.J-b.dimension.J;
+	return tmp;
 }
 void printQuantity(Quantity a) {
 	int nominator=0;
@@ -124,35 +129,35 @@ void printQuantity(Quantity a) {
 		printf("E");
 	} else if(a.koef==pow(10.0,15)) {
 		printf("P");
-	} else if(a.koef==pow(10.0,12) {
+	} else if(a.koef==pow(10.0,12)) {
 		printf("T");
-	} else if(a.koef==pow(10.0,9) {
+	} else if(a.koef==pow(10.0,9)) {
 		printf("G");
 	} else if(a.koef==pow(10.0,6)) {
 		printf("M");
 	} else if(a.koef==pow(10.0,3)) {
 		printf("k");
 	} else if(a.koef==pow(10.0,2)) {
-		print("h");
+		printf("h");
 	} else if(a.koef==pow(10.0,1)) {
-		print("da");
+		printf("da");
 	} else if(a.koef==pow(10.0,0)) {
 		//ничего не делаем
 	} else if(a.koef==pow(10.0,-1)) {
 		printf("d");
-	} else if(a.koef==pow(10.0,-2) {
-		printf("c") {
-	} else if(a.koef==pow(10.0,-3) {
+	} else if(a.koef==pow(10.0,-2)) {
+		printf("c"); {
+	} else if(a.koef==pow(10.0,-3)) {
 		printf("m");
-	} else if(a.koef==pow(10.0,-6) {
+	} else if(a.koef==pow(10.0,-6)) {
 		printf("μ");
-	} else if(a.koef==pow(10.0,-9) {
+	} else if(a.koef==pow(10.0,-9)) {
 		printf("n");
-	} else if(a.koef==pow(10.0,-12) {
+	} else if(a.koef==pow(10.0,-12)) {
 		printf("p");
-	} else if(a.koef==pow(10.0,-15) {
+	} else if(a.koef==pow(10.0,-15)) {
 		printf("f");
-	} else if(a.koef==pow(10.0,-18) {
+	} else if(a.koef==pow(10.0,-18)) {
 		printf("a");
 	} else {
 		printf("* %f",a.koef);
@@ -174,7 +179,7 @@ void printQuantity(Quantity a) {
 		if(a.dimension.L>1) {
 			printf("^%d",a.dimension.L);
 		}
-		nominator=1
+		nominator=1;
 	} else if(a.dimension.L<0) {
 		denomonator=1;
 	}
@@ -186,7 +191,7 @@ void printQuantity(Quantity a) {
 		if(a.dimension.T>1) {
 			printf("^%d",a.dimension.T);
 		}
-		nominator=1
+		nominator=1;
 	} else if(a.dimension.T<0) {
 		denomonator=1;
 	}
@@ -198,7 +203,7 @@ void printQuantity(Quantity a) {
 		if(a.dimension.I>1) {
 			printf("^%d",a.dimension.I);
 		}
-		nominator=1
+		nominator=1;
 	} else if(a.dimension.I<0) {
 		denomonator=1;
 	}
@@ -210,7 +215,7 @@ void printQuantity(Quantity a) {
 		if(a.dimension.K>1) {
 			printf("^%d",a.dimension.K);
 		}
-		nominator=1
+		nominator=1;
 	} else if(a.dimension.K<0) {
 		denomonator=1;
 	}
@@ -222,7 +227,7 @@ void printQuantity(Quantity a) {
 		if(a.dimension.N>1) {
 			printf("^%d",a.dimension.N);
 		}
-		nominator=1
+		nominator=1;
 	} else if(a.dimension.N<0) {
 		denomonator=1;
 	}
@@ -234,7 +239,7 @@ void printQuantity(Quantity a) {
 		if(a.dimension.L>1) {
 			printf("^%d",a.dimension.J);
 		}
-		nominator=1
+		nominator=1;
 	} else if(a.dimension.J<0) {
 		denomonator=1;
 	}
@@ -254,7 +259,7 @@ void printQuantity(Quantity a) {
 			}
 			if(a.dimension.T<0) {
 				if(printed==1) {
-					printf(" * ")
+					printf(" * ");
 				}
 				printf("s^%d",a.dimension.T);
 				printed=1;
@@ -287,6 +292,7 @@ void printQuantity(Quantity a) {
 				printf("cd^%d",a.dimension.J);
 			}
 		} else {
+			printf(" / ");
 			if(a.dimension.M<0) {
 				printf("kg");
 				if(a.dimension.m<-1) {
@@ -306,7 +312,7 @@ void printQuantity(Quantity a) {
 			}
 			if(a.dimension.T<0) {
 				if(printed==1) {
-					printf(" * ")
+					printf(" * ");
 				}
 				printf("s");
 				if(a.dimension.T<-1) {
@@ -339,7 +345,7 @@ void printQuantity(Quantity a) {
 					printf(" * ");
 				}
 				printf("nu");
-				if(a.dimension.N) {
+				if(a.dimension.N<-1) {
 					printf("^%d",a.dimension.N*-1);
 				}
 				printed=1;

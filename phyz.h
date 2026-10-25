@@ -1,10 +1,10 @@
-#typedef struct Dimension {
+typedef struct Dimension {
 	int L, M, T, I, K, N, J; //Соовественно: Длинна, Масса, Время, Сила тока, Темпервтура, Количество вещества, Сила света
 } Dimension;
 
-#typedef struct Quantity {
+typedef struct Quantity {
 	float value;
-	float koeff;
+	float koef;
 	Dimension dimension;
 } Quantity;
 
