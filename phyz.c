@@ -238,4 +238,54 @@ void printQuantity(Quantity a) {
 	} else if(a.dimension.J<0) {
 		denomonator=1;
 	}
+	if(denominator==1) {
+		int printed=0;
+		if (nominator==0) {
+			if(a.dimension.M<0) {
+				printf("kg^%d",a.dimension.M);
+				printed=1;
+			}
+			if(a.dimension.L<0) {
+				if(printed==1) {
+					printf(" * ");
+				}
+				printf("m^%d", a.dimension.L);
+				printed=1;
+			}
+			if(a.dimension.T<0) {
+				if(printed==1) {
+					printf(" * ")
+				}
+				printf("s^%d",a.dimension.T);
+				printed=1;
+			}
+			if(a.dimension.I<0) {
+				if(printed==1) {
+					printf(" * ");
+				}
+				printf("A^%d",a.dimension.I);
+				printed=1;
+			}
+			if(a.dimension.K<0) {
+				if(printed==1) {
+					printf(" * ");
+				}
+				printf("K^%d",a.dimension.K);
+				printed=1;
+			}
+			if(a.dimension.N<0) {
+				if(printed==1) {
+					printf(" * ");
+				}
+				printf("nu^%d",a.dimension.N);
+				printed=1;
+			}
+			if(a.dimension.J<0) {
+				if(printed==1) {
+					printf(" * ");
+				}
+				printf("cd^%d",a.dimension.J);
+			}
+		} else {
+		}
 }
