@@ -24,17 +24,20 @@ int equalDimension(Quantity a, Quantity b) {
 	if(a.dimension.J!=b.dimension.J) {
 		return 0;
 	}
+	if(a.kind!=b.kind) {
+		return 0;
+	}
 	return 1;
 }
 int isArea(Quantity a) {
-	if((a.dimension.L=2 || a.dimension.L-2) && a.dimension.M==0 && a.dimension.T==0 && a.dimension.I==0 && a.dimension.K && a.dimension.N && a.dimension.J) {
+	if((a.dimension.L==2 || a.dimension.L==-2) && a.dimension.M==0 && a.dimension.T==0 && a.dimension.I==0 && a.dimension.K && a.dimension.N && a.dimension.J) {
 		return 1;
 	} else {
 		return 0;
 	}
 }
 int isVolume(Quantity a) {
-	if((a.dimension.L=3 || a.dimension.L-3) && a.dimension.M==0 && a.dimension.T==0 && a.dimension.I==0 && a.dimension.K && a.dimension.N && a.dimension.J) {
+	if((a.dimension.L==3 || a.dimension.L==-3) && a.dimension.M==0 && a.dimension.T==0 && a.dimension.I==0 && a.dimension.K && a.dimension.N && a.dimension.J) {
 		return 1;
 	} else {
 		return 0;
@@ -46,7 +49,7 @@ Quantity addQuantity(Quantity a, Quantity b) {
 	if(equalDimension(a, b)!=0) {
 		printf("Не возможно складывать величины разных размерностей");
 		tmp.value=0;
-		tmp.koef=0;
+		tmp.koef=1;
 		tmp.dimension.L=0;
 		tmp.dimension.M=0;
 		tmp.dimension.T=0;
@@ -64,6 +67,7 @@ Quantity addQuantity(Quantity a, Quantity b) {
 	tmp.dimension.K=a.dimension.K;
 	tmp.dimension.N=a.dimension.N;
 	tmp.dimension.J=a.dimension.J;
+	tmp.koef=1;
 	return tmp;
 }
 Quantity subQuantity(Quantity a, Quantity b) {
@@ -89,11 +93,13 @@ Quantity subQuantity(Quantity a, Quantity b) {
 	tmp.dimension.K=a.dimension.K;
 	tmp.dimension.N=a.dimension.N;
 	tmp.dimension.J=a.dimension.J;
+	tmp.koef=1;
 	return tmp;
 }
 Quantity mulQuantity(Quantity a, Quantity b) {
 	Quantity tmp;
 	tmp.value=a.value*a.koef*b.value*b.koef;
+	tmp.koef=1;
 	tmp.dimension.L=a.dimension.L+b.dimension.L;
 	tmp.dimension.M=a.dimension.M+b.dimension.M;
 	tmp.dimension.T=a.dimension.T+b.dimension.T;
@@ -106,6 +112,7 @@ Quantity mulQuantity(Quantity a, Quantity b) {
 Quantity delQuantity(Quantity a, Quantity b) {
 	Quantity tmp;
 	tmp.value=a.value*a.koef/b.value*b.koef;
+	tmp.koef=1;
 	tmp.dimension.L=a.dimension.L-b.dimension.L;
 	tmp.dimension.M=a.dimension.M-b.dimension.M;
 	tmp.dimension.T=a.dimension.T-b.dimension.T;
@@ -146,7 +153,7 @@ void printQuantity(Quantity a) {
 	} else if(a.koef==pow(10.0,-1)) {
 		printf("d");
 	} else if(a.koef==pow(10.0,-2)) {
-		printf("c"); {
+		printf("c"); 
 	} else if(a.koef==pow(10.0,-3)) {
 		printf("m");
 	} else if(a.koef==pow(10.0,-6)) {
@@ -181,7 +188,7 @@ void printQuantity(Quantity a) {
 		}
 		nominator=1;
 	} else if(a.dimension.L<0) {
-		denomonator=1;
+		denominator=1;
 	}
 	if(a.dimension.T>0) {
 		if(nominator==1) {
@@ -193,7 +200,7 @@ void printQuantity(Quantity a) {
 		}
 		nominator=1;
 	} else if(a.dimension.T<0) {
-		denomonator=1;
+		denominator=1;
 	}
 	if(a.dimension.I>0) {
 		if(nominator==1) {
@@ -205,7 +212,7 @@ void printQuantity(Quantity a) {
 		}
 		nominator=1;
 	} else if(a.dimension.I<0) {
-		denomonator=1;
+		denominator=1;
 	}
 	if(a.dimension.K>0) {
 		if(nominator==1) {
@@ -217,7 +224,7 @@ void printQuantity(Quantity a) {
 		}
 		nominator=1;
 	} else if(a.dimension.K<0) {
-		denomonator=1;
+		denominator=1;
 	}
 	if(a.dimension.N>0) {
 		if(nominator==1) {
@@ -229,19 +236,19 @@ void printQuantity(Quantity a) {
 		}
 		nominator=1;
 	} else if(a.dimension.N<0) {
-		denomonator=1;
+		denominator=1;
 	}
 	if(a.dimension.J>0) {
 		if(nominator==1) {
 			printf(" * ");
 		}
 		printf("cd");
-		if(a.dimension.L>1) {
+		if(a.dimension.J>1) {
 			printf("^%d",a.dimension.J);
 		}
 		nominator=1;
 	} else if(a.dimension.J<0) {
-		denomonator=1;
+		denominator=1;
 	}
 	if(denominator==1) {
 		int printed=0;
@@ -295,7 +302,7 @@ void printQuantity(Quantity a) {
 			printf(" / ");
 			if(a.dimension.M<0) {
 				printf("kg");
-				if(a.dimension.m<-1) {
+				if(a.dimension.M<-1) {
 					printf("^%d",a.dimension.M*-1);
 				}
 				printed=1;
@@ -316,7 +323,7 @@ void printQuantity(Quantity a) {
 				}
 				printf("s");
 				if(a.dimension.T<-1) {
-					printf("^%d",a.dimension.T);
+					printf("^%d",a.dimension.T*-1);
 				}
 				printed=1;
 			}
