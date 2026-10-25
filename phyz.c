@@ -178,4 +178,64 @@ void printQuantity(Quantity a) {
 	} else if(a.dimension.L<0) {
 		denomonator=1;
 	}
+	if(a.dimension.T>0) {
+		if(nominator==1) {
+			printf(" * ");
+		}
+		printf("s");
+		if(a.dimension.T>1) {
+			printf("^%d",a.dimension.T);
+		}
+		nominator=1
+	} else if(a.dimension.T<0) {
+		denomonator=1;
+	}
+	if(a.dimension.I>0) {
+		if(nominator==1) {
+			printf(" * ");
+		}
+		printf("A");
+		if(a.dimension.I>1) {
+			printf("^%d",a.dimension.I);
+		}
+		nominator=1
+	} else if(a.dimension.I<0) {
+		denomonator=1;
+	}
+	if(a.dimension.K>0) {
+		if(nominator==1) {
+			printf(" * ");
+		}
+		printf("K");
+		if(a.dimension.K>1) {
+			printf("^%d",a.dimension.K);
+		}
+		nominator=1
+	} else if(a.dimension.K<0) {
+		denomonator=1;
+	}
+	if(a.dimension.N>0) {
+		if(nominator==1) {
+			printf(" * ");
+		}
+		printf("nu");
+		if(a.dimension.N>1) {
+			printf("^%d",a.dimension.N);
+		}
+		nominator=1
+	} else if(a.dimension.N<0) {
+		denomonator=1;
+	}
+	if(a.dimension.J>0) {
+		if(nominator==1) {
+			printf(" * ");
+		}
+		printf("cd");
+		if(a.dimension.L>1) {
+			printf("^%d",a.dimension.J);
+		}
+		nominator=1
+	} else if(a.dimension.J<0) {
+		denomonator=1;
+	}
 }
