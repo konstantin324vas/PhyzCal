@@ -9,6 +9,8 @@
 } Quantity;
 
 int equalDimension (Quantity a, Quantity b);
+int isArea(Quantity a);
+int isVolume(Quantity a);
 
 Quantity addQuantity (Quantity a, Quantity b);
 Quantity subQuantity (Quantity a, Quantity b);
