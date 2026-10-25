@@ -288,49 +288,71 @@ void printQuantity(Quantity a) {
 			}
 		} else {
 			if(a.dimension.M<0) {
-				printf("kg^%d",a.dimension.M);
+				printf("kg");
+				if(a.dimension.m<-1) {
+					printf("^%d",a.dimension.M*-1);
+				}
 				printed=1;
 			}
 			if(a.dimension.L<0) {
 				if(printed==1) {
 					printf(" * ");
 				}
-				printf("m^%d", a.dimension.L);
+				printf("m");
+				if(a.dimension.L<-1) {
+					printf("^%d", a.dimension.L*-1);
+				}
 				printed=1;
 			}
 			if(a.dimension.T<0) {
 				if(printed==1) {
 					printf(" * ")
 				}
-				printf("s^%d",a.dimension.T);
+				printf("s");
+				if(a.dimension.T<-1) {
+					printf("^%d",a.dimension.T);
+				}
 				printed=1;
 			}
 			if(a.dimension.I<0) {
 				if(printed==1) {
 					printf(" * ");
 				}
-				printf("A^%d",a.dimension.I);
+				printf("A");
+				if(a.dimension.I<-1) {
+					printf("^%d",a.dimension.I*-1);
+				}
 				printed=1;
 			}
 			if(a.dimension.K<0) {
 				if(printed==1) {
 					printf(" * ");
 				}
-				printf("K^%d",a.dimension.K);
+				printf("K");
+				if(a.dimension.K<-1) {
+					printf("^%d",a.dimension.K*-1);
+				}
 				printed=1;
 			}
 			if(a.dimension.N<0) {
 				if(printed==1) {
 					printf(" * ");
 				}
-				printf("nu^%d",a.dimension.N);
+				printf("nu");
+				if(a.dimension.N) {
+					printf("^%d",a.dimension.N*-1);
+				}
 				printed=1;
 			}
 			if(a.dimension.J<0) {
 				if(printed==1) {
 					printf(" * ");
 				}
-				printf("cd^%d",a.dimension.J);
+				printf("cd");
+				if(a.dimension.J<-1) {
+					printf("^%d",a.dimension.J);
+				}
 			}
 		}
+	}
 }
